@@ -1,16 +1,29 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: magnu
-  Date: 2025-09-30
-  Time: 12:51
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Registrera dig</title>
 </head>
 <body>
+<%@ include file="header.jsp" %>
+<h2>Registrera dig</h2>
 
+<form action="register" method="post">
+    <label for="username">Användarnamn:</label>
+    <input type="text" id="username" name="username" required><br/><br/>
+
+    <label for="email">E-post:</label>
+    <input type="email" id="email" name="email" required><br/><br/>
+
+    <label for="password">Lösenord:</label>
+    <input type="password" id="password" name="password" required><br/><br/>
+
+    <label for="confirm">Bekräfta lösenord:</label>
+    <input type="password" id="confirm" name="confirm" required><br/><br/>
+
+    <button type="submit">Registrera</button>
+</form>
+
+<p>Har du redan ett konto? <a href="login.jsp">Logga in här</a></p>
+<%@ include file="footer.jsp" %>
 </body>
 </html>
