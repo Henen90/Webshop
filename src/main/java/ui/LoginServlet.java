@@ -23,16 +23,13 @@ public class LoginServlet extends HttpServlet {
         try {
             UserDTO userDTO = BOFacade.validateUser(username, password);
             if (userDTO != null) {
+                request.getSession().setAttribute("user", userDTO);
                 response.sendRedirect("index.jsp");
             }
             else {
-                try {
-                    request.setAttribute("error", "Invalid details");
-                    request.getRequestDispatcher("login.jsp").forward(request, response);
-                }
-                catch (Exception e) {
-                    System.out.println("user not found");
-                }
+                request.setAttribute("error", "Invalid details");
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+                System.out.println("user not found");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
