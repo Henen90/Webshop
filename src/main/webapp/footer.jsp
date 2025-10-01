@@ -1,16 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: magnu
-  Date: 2025-09-30
-  Time: 12:51
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div style="background-color: #333; color: white; padding: 10px; text-align: center; margin-top: 20px;">
+    <p>&copy; 2025 Webbshop AB | Kontakt: info@webbshop.se</p>
+</div>
