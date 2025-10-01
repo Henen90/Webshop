@@ -8,6 +8,10 @@ public class User {
     private String passWord;
     private String eMail;
 
+//    protected User(){
+//
+//    }
+
     protected User(int id, String firstName, String lastName, String userName, String passWord, String eMail) {
         this.id = id;
         this.firstName = firstName;
