@@ -6,9 +6,12 @@ import java.sql.SQLException;
 
 public class BOFacade {
 
-    public boolean validateUser(String username, String password) throws SQLException {
-        if(UserDAO.findByUsernameAndPassword(username, password)) return true;
-        return false;
+    public static UserDTO validateUser(String username, String password) throws SQLException {
+        User user = UserDAO.findByUsernameAndPassword(username, password);
+        if(user != null){
+            return new UserDTO(user.getUserName(), user.geteMail());
+        }
+        return null;
     }
 
 }

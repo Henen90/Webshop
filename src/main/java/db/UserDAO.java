@@ -1,5 +1,7 @@
 package db;
 
+import bo.User;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +14,7 @@ public class UserDAO extends bo.User{
     }
 
 
-    public static boolean findByUsernameAndPassword(String userName, String password) throws SQLException {
+    public static User findByUsernameAndPassword(String userName, String password) throws SQLException {
         String sql = "SELECT * FROM USERS WHERE username=? AND password=?;";
         try(Connection connection = DBManager.getConnection();
             PreparedStatement stmt = connection.prepareStatement(sql)){
@@ -22,10 +24,17 @@ public class UserDAO extends bo.User{
             ResultSet rs = stmt.executeQuery();
             System.out.println("result is: "+rs.toString());
             if(rs.next()){
-                return true;
+                return new User(
+                        rs.getInt("ID"),
+                        rs.getString("FIRSTNAME"),
+                        rs.getString("LASTNAME"),
+                        rs.getString("USERNAME"),
+                        rs.getString("PASSWORD"),
+                        rs.getString("EMAIL")
+                );
             }
         }
-        return false;
+        return null;
     }
 
     public static boolean removeUser(int id){
