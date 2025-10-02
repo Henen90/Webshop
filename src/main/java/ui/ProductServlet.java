@@ -12,25 +12,21 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "productServlet", value = "/product")
+@WebServlet(name = "productServlet", value = "")
 public class ProductServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //String category = request.getParameter("category");
-
-        //filter from search
-        //filter from category
-
-        try{
+        try {
             List<ProductDTO> products = BOFacade.getAllProducts();
             request.setAttribute("products", products);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             request.setAttribute("errorMessage", "Could not load products. Please try again later.");
             e.printStackTrace();
         }
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/products.jsp");
+
+        // UNCOMMENT these lines and forward to index.jsp
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
         dispatcher.forward(request, response);
     }
 }

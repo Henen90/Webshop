@@ -43,8 +43,9 @@
     <jsp:include page="products.jsp"/>
 
 
-</main>
 
-</body>
+</main>
 <%@ include file="footer.jsp" %>
+</body>
+
 </html>

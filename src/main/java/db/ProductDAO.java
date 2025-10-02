@@ -22,7 +22,7 @@ public class ProductDAO extends bo.Product{
 
     public static List<Product> getAllProducts() throws SQLException {
         List<Product> products = new ArrayList<>();
-        String sql = "SELECT id, name, descr, price FROM products";
+        String sql = "SELECT id, name, descr, category, price FROM products";
 
         try (Connection connection = DBManager.getConnection()) {
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -39,9 +39,6 @@ public class ProductDAO extends bo.Product{
                 products.add(product);
             }
 
-        }
-        catch (Exception e) {
-            e.printStackTrace();
         }
 
         return products;
