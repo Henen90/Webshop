@@ -1,7 +1,7 @@
 <div style="background-color:#333; color:white; padding:15px; display:flex; justify-content:space-between; align-items:center;">
     <div>
-        <a href="index.jsp" style="color:white; margin:0 15px; text-decoration:none;">Hem</a>
-        <a href="shoppingCart.jsp" style="color:white; margin:0 15px; text-decoration:none;">Kundvagn</a>
+        <a href="${pageContext.request.contextPath}/" style="color:white; margin:0 15px; text-decoration:none;">Hem</a>
+        <a href="shoppingcart.jsp" style="color:white; margin:0 15px; text-decoration:none;">Kundvagn</a>
     </div>
     <div>
         <%

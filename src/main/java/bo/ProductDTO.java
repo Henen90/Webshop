@@ -1,20 +1,30 @@
 package bo;
 
 public class ProductDTO {
+    private int id;
     private String name;
     private String descr;
     private float price;
     private String category;
 
-    public ProductDTO(String name, String descr, float price, String category) {
+    public ProductDTO(int id, String name, String descr, String category, float price) {
+        this.id = id;
         this.name = name;
         this.descr = descr;
-        this.price = price;
         this.category = category;
+        this.price = price;
     }
 
     public float getPrice() {
         return price;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setPrice(float price) {
