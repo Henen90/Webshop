@@ -14,7 +14,7 @@ public class UserDAO extends bo.User{
     }
 
 
-    public static User findByUsernameAndPassword(String userName, String password) throws SQLException {
+    public static UserDAO findByUsernameAndPassword(String userName, String password) throws SQLException {
         String sql = "SELECT * FROM USERS WHERE username=? AND password=?;";
         try(Connection connection = DBManager.getConnection();
             PreparedStatement stmt = connection.prepareStatement(sql)){

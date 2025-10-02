@@ -11,7 +11,7 @@ public class User {
 
     protected User(int id, String firstName, String lastName, String userName, String passWord, String eMail) {
         this.id = id;
-        this.firstName = firstName; // GÖRA OM USER TILL PROTECTED, USERDAO BRÅKAR DÅ. VAD GÖRA??
+        this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
         this.passWord = passWord;
