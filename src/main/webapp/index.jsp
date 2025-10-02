@@ -40,27 +40,11 @@
 <main>
     <h2>Produkter</h2>
 
-    <!-- Just nu "dummy"-produkter -->
-    <div class="product">
-        <h3>Produkt 1</h3>
-        <p>En kort beskrivning av produkt 1</p>
-        <button>Lägg i kundvagn</button>
-    </div>
+    <jsp:include page="products.jsp"/>
 
-    <div class="product">
-        <h3>Produkt 2</h3>
-        <p>En kort beskrivning av produkt 2</p>
-        <button>Lägg i kundvagn</button>
-    </div>
 
-    <div class="product">
-        <h3>Produkt 3</h3>
-        <p>En kort beskrivning av produkt 3</p>
-        <button>Lägg i kundvagn</button>
-    </div>
 </main>
 
-<%@ include file="footer.jsp" %>
-
 </body>
+<%@ include file="footer.jsp" %>
 </html>

@@ -6,12 +6,14 @@ public class Product {
     private String descr;
     private int id;
     private String category;
+    private float price;
 
-    protected Product(int id, String name, String descr, String category){
+    protected Product(int id, String name, String descr, String category, float price){
         this.id = id;
         this.name = name;
         this.descr = descr;
         this.category = category;
+        this.price=price;
     }
 
     public String getName() {
@@ -44,6 +46,14 @@ public class Product {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
     }
 
     @Override
