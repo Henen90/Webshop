@@ -25,7 +25,6 @@ public class ProductServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        // UNCOMMENT these lines and forward to index.jsp
         RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
         dispatcher.forward(request, response);
     }

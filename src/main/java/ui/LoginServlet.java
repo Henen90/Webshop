@@ -14,6 +14,11 @@ import java.sql.SQLException;
 @WebServlet(name = "loginServlet", value = "/login")
 public class LoginServlet extends HttpServlet {
 
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("").forward(request, response);
+    }
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -22,7 +27,7 @@ public class LoginServlet extends HttpServlet {
             UserDTO userDTO = BOFacade.validateUser(username, password);
             if (userDTO != null) {
                 request.getSession().setAttribute("user", userDTO);
-                response.sendRedirect("");
+                response.sendRedirect(request.getContextPath());
             }
             else {
                 request.setAttribute("error", "Felaktigt användarnamn eller lösenord");
