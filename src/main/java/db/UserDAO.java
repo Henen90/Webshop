@@ -24,7 +24,7 @@ public class UserDAO extends bo.User{
             ResultSet rs = stmt.executeQuery();
             System.out.println("result is: "+rs.toString());
             if(rs.next()){
-                return new User(
+                return new UserDAO(
                         rs.getInt("ID"),
                         rs.getString("FIRSTNAME"),
                         rs.getString("LASTNAME"),

@@ -8,11 +8,8 @@ public class User {
     private String passWord;
     private String eMail;
 
-//    protected User(){
-//
-//    }
 
-    public User(int id, String firstName, String lastName, String userName, String passWord, String eMail) {
+    protected User(int id, String firstName, String lastName, String userName, String passWord, String eMail) {
         this.id = id;
         this.firstName = firstName; // GÖRA OM USER TILL PROTECTED, USERDAO BRÅKAR DÅ. VAD GÖRA??
         this.lastName = lastName;

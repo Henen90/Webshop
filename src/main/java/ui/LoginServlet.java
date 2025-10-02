@@ -2,7 +2,6 @@ package ui;
 
 import bo.BOFacade;
 import bo.UserDTO;
-import db.UserDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -27,7 +26,7 @@ public class LoginServlet extends HttpServlet {
                 response.sendRedirect("index.jsp");
             }
             else {
-                request.setAttribute("error", "Invalid details");
+                request.setAttribute("error", "Felaktigt användarnamn eller lösenord");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
                 System.out.println("user not found");
             }

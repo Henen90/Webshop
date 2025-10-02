@@ -6,8 +6,8 @@ import java.util.List;
 
 public class ProductDAO extends bo.Product{
 
-    protected ProductDAO(int id, String name, String descr) {
-        super(id, name, descr);
+    protected ProductDAO(int id, String name, String descr, String category) {
+        super(id, name, descr, category);
     }
 
     public static List<Product> searchProducts(String criteria){

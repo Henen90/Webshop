@@ -1,8 +1,5 @@
 package bo;
 
-import db.ProductDAO;
-
-import java.util.Collection;
 
 public class Product {
     private String name;

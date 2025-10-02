@@ -16,6 +16,9 @@
 
     <button type="submit">Logga in</button>
 </form>
+<c:if test="${not empty error}">
+    <p style="color:red;">${error}</p>
+</c:if>
 
 <p>Har du inget konto? <a href="register.jsp">Registrera dig här</a></p>
 <%@ include file="footer.jsp" %>
