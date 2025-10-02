@@ -1,16 +1,21 @@
 package bo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingCart {
     private List<ProductDTO> products;
-    private int index;
 
     public ShoppingCart(){
+        this.products = new ArrayList<>();
     }
 
-    public boolean addToCart(ProductDTO product){
-        return products.add(product);
+    public void addToCart(ProductDTO product){
+        products.add(product);
+    }
+
+    public List<ProductDTO> getProducts() {
+        return this.products;
     }
 
     public boolean removeFromCart(int index){
@@ -18,7 +23,7 @@ public class ShoppingCart {
             products.remove(index);
             return true;
         }
-        System.out.printf("Index out of bounds");
+        System.out.print("Index out of bounds");
         return false;
     }
 }

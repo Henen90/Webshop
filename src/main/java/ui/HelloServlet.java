@@ -2,10 +2,12 @@ package ui;
 
 import java.io.*;
 
+import bo.BOFacade;
+import bo.ProductDTO;
+import bo.ShoppingCart;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import org.h2.tools.Server;
-import java.sql.SQLException;
 
 @WebServlet(name = "helloServlet", value = "/hello-servlet")
 public class HelloServlet extends HttpServlet {
@@ -28,4 +30,6 @@ public class HelloServlet extends HttpServlet {
 
     public void destroy() {
     }
+
+
 }

@@ -38,10 +38,29 @@ public class ProductDAO extends bo.Product{
                 ProductDAO product = new ProductDAO(id, name, descr, category, price);
                 products.add(product);
             }
-
         }
 
         return products;
+    }
+
+    public static ProductDAO findProductById(int id) throws SQLException {
+        String sql = "SELECT * FROM PRODUCTS WHERE id=?;";
+        ProductDAO product=null;
+        try (Connection connection = DBManager.getConnection()) {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                String name = rs.getString("name");
+                String descr = rs.getString("descr");
+                String category = rs.getString("category");
+                float price = rs.getFloat("price");
+                product = new ProductDAO(id, name, descr, category, price);
+            }
+        }
+        return product;
     }
 
     public static boolean addProduct(String name, int id, String descr){

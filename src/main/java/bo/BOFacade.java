@@ -22,7 +22,7 @@ public class BOFacade {
         List<ProductDTO> productDTOS = new ArrayList<>();
 
         for(int i = 0; i < products.size(); i++){
-            productDTOS.add(new ProductDTO(products.get(i).getName(),products.get(i).getDescr(),products.get(i).getPrice(),products.get(i).getCategory()));
+            productDTOS.add(new ProductDTO(products.get(i).getId(), products.get(i).getName(),products.get(i).getDescr(),products.get(i).getCategory(),products.get(i).getPrice()));
         }
         return productDTOS;
     }
@@ -42,6 +42,12 @@ public class BOFacade {
 
 
 
+        return null;
+    }
+
+    public static ProductDTO getProductById(int id) throws SQLException {
+        Product product = ProductDAO.findProductById(id);
+        if (product != null) return new ProductDTO(product.getId(), product.getName(),product.getDescr(),product.getCategory(), product.getPrice());
         return null;
     }
 
