@@ -18,12 +18,11 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-
         try {
             UserDTO userDTO = BOFacade.validateUser(username, password);
             if (userDTO != null) {
                 request.getSession().setAttribute("user", userDTO);
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("");
             }
             else {
                 request.setAttribute("error", "Felaktigt användarnamn eller lösenord");
