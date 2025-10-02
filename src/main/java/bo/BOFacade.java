@@ -27,6 +27,10 @@ public class BOFacade {
         return productDTOS;
     }
 
+    public static boolean registerUser(String firstName, String lastName, String userName, String passWord, String eMail) throws SQLException {
+        return UserDAO.registerUser(firstName,lastName,userName,passWord,eMail);
+    }
+
     public static List<ProductDTO> getProductsByName(){
 
 
