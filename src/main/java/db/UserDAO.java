@@ -46,18 +46,17 @@ public class UserDAO extends bo.User {
         List<User> users = new ArrayList<>();
         String sql = "SELECT id, firstName, lastName, userName, passWord, eMail, role FROM USERS";
 
-        try (Connection conn = DBManager.getConnection(); // Assuming you have a DatabaseConnector utility
+        try (Connection conn = DBManager.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                // IMPORTANT: The User constructor must be updated to accept the role.
                 User user = new UserDAO(
                         rs.getInt("id"),
                         rs.getString("firstName"),
                         rs.getString("lastName"),
                         rs.getString("userName"),
-                        rs.getString("passWord"), // NOTE: Consider if you truly need to retrieve the password hash here
+                        rs.getString("passWord"),
                         rs.getString("eMail"),
                         rs.getString("ROLE")
                 );
@@ -154,15 +153,19 @@ public class UserDAO extends bo.User {
         }
     }
 
+
     public static boolean changeUserRole(int id, String newRole) throws SQLException {
         String sql = "UPDATE USERS SET ROLE = ? WHERE ID = ?";
+        System.out.println("DAO DEBUG: Attempting to change role for ID: " + id + " to: " + newRole);
+
         try (Connection connection = DBManager.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
 
-            // The role is stored as a string in the DB (e.g., "ADMIN" or "USER")
             stmt.setString(1, newRole);
             stmt.setInt(2, id);
             int rows = stmt.executeUpdate();
+
+            System.out.println("DAO DEBUG: Rows updated: " + rows);
             return rows > 0;
         }
     }

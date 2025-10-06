@@ -15,7 +15,7 @@ public class BOFacade {
     public static UserDTO validateUser(String username, String password) throws SQLException {
         User user = UserDAO.findByUsernameAndPassword(username, password);
         if(user != null){
-            return new UserDTO(user.getUserName(), user.geteMail(), user.getRole());
+            return new UserDTO(user.getId(), user.getUserName(), user.geteMail(), user.getRole());
         }
         return null;
     }
@@ -23,7 +23,7 @@ public class BOFacade {
     public static UserDTO getUser(String username) throws SQLException {
         User user = UserDAO.findByUsername(username);
         if(user != null){
-            return new UserDTO(user.getUserName(), user.geteMail(), user.getRole());
+            return new UserDTO(user.getId(), user.getUserName(), user.geteMail(), user.getRole());
         }
         return null;
     }
@@ -34,6 +34,7 @@ public class BOFacade {
 
         for (User user : users) {
             userDTOS.add(new UserDTO(
+                    user.getId(),
                     user.getUserName(),
                     user.geteMail(),
                     user.getRole()

@@ -1,11 +1,13 @@
 package bo;
 
 public class UserDTO {
+    private int id;
     private String username;
     private String email;
     private Role role;
 
-    public UserDTO(String username, String email, Role role){
+    public UserDTO(int id, String username, String email, Role role){
+        this.id = id;
         this.username = username;
         this.email = email;
         this.role = role;
@@ -17,6 +19,10 @@ public class UserDTO {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getEmail() {

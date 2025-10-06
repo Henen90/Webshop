@@ -13,11 +13,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-// Map the servlet to handle all admin actions
 @WebServlet(urlPatterns = {"/admin/users", "/admin/deleteUser", "/admin/changeRole"})
 public class AdminServlet extends HttpServlet {
 
-    // Helper method to redirect to the user listing page
     private void redirectToUsers(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.sendRedirect(request.getContextPath() + "/admin/users");
     }
@@ -27,20 +25,16 @@ public class AdminServlet extends HttpServlet {
         HttpSession session = request.getSession();
         UserDTO loggedInUser = (UserDTO) session.getAttribute("user");
 
-        // 1. Security Check (already handled in JSP, but good to have in servlet too)
         if (loggedInUser == null || !"ADMIN".equals(loggedInUser.getRole())) {
             response.sendRedirect(request.getContextPath() + "/");
             return;
         }
 
-        // Ensure this method is called only when displaying the list
         if (request.getServletPath().equals("/admin/users")) {
             try {
-                // 2. Fetch all users
                 List<UserDTO> allUsers = BOFacade.getAllUsers();
                 request.setAttribute("allUsers", allUsers);
 
-                // 3. Forward to the display page
                 request.getRequestDispatcher("/admin_users.jsp").forward(request, response);
 
             } catch (SQLException e) {
@@ -56,7 +50,6 @@ public class AdminServlet extends HttpServlet {
         HttpSession session = request.getSession();
         UserDTO loggedInUser = (UserDTO) session.getAttribute("user");
 
-        // 1. Security Check
         if (loggedInUser == null || !"ADMIN".equals(loggedInUser.getRole())) {
             redirectToUsers(request, response);
             return;
@@ -97,7 +90,6 @@ public class AdminServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        // Redirect back to the GET method to show the updated list and clear message/error attributes
         redirectToUsers(request, response);
     }
 }

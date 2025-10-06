@@ -54,16 +54,17 @@
             <td>${u.username}</td>
             <td>${u.role}</td>
             <td>
-                <form action="admin/deleteUser" method="post" onsubmit="return confirm('Är du säker på att du vill ta bort användaren ${u.username}?');">
+                <form action="${pageContext.request.contextPath}/admin/deleteUser" method="post" onsubmit="return confirm('Är du säker på att du vill ta bort användaren ${u.username}?');">
                     <input type="hidden" name="userId" value="${u.id}">
                     <button type="submit" style="color:red; border:none; background:none; cursor:pointer;">Ta bort</button>
                 </form>
 
-                <form action="admin/changeRole" method="post">
+                <form action="${pageContext.request.contextPath}/admin/changeRole" method="post">
                     <input type="hidden" name="userId" value="${u.id}">
                     <select name="newRole">
                         <option value="USER" <c:if test="${u.role eq 'USER'}">selected</c:if>>USER</option>
                         <option value="ADMIN" <c:if test="${u.role eq 'ADMIN'}">selected</c:if>>ADMIN</option>
+                        <option value="WAREHOUSE_STAFF" <c:if test="${u.role eq 'WAREHOUSE_STAFF'}">selected</c:if>>WAREHOUSE_STAFF</option>
                     </select>
                     <button type="submit">Ändra Roll</button>
                 </form>

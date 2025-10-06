@@ -35,13 +35,13 @@ public class ShoppingCartServlet extends HttpServlet {
                     request.setAttribute("error","Produkten finns tyvärr inte i lager.");
                 }
             }
-            response.sendRedirect(request.getContextPath());
+            //response.sendRedirect(request.getContextPath());
 
         }
         catch (Exception e) {
             e.printStackTrace();
         }
-        //response.sendRedirect("shoppingcart.jsp");
+        response.sendRedirect("shoppingcart.jsp");
     }
 
 }

@@ -12,9 +12,9 @@
         <%
             if (loggedInUser != null && "ADMIN".equals(loggedInUser.getRole())) {
         %>
-        <a href="admin_users.jsp" style="color:white; margin:0 15px; text-decoration:none;">Användare</a>
-        <a href="admin_products.jsp" style="color:white; margin:0 15px; text-decoration:none;">Produkter</a>
-        <a href="admin_orders.jsp" style="color:white; margin:0 15px; text-decoration:none;">Beställningar</a>
+        <a href="admin/users" style="color:white; margin:0 15px; text-decoration:none;">Användare</a>
+        <a href="admin/products" style="color:white; margin:0 15px; text-decoration:none;">Produkter</a>
+        <a href="admin/orders" style="color:white; margin:0 15px; text-decoration:none;">Beställningar</a>
         <% } %>
     </div>
 
