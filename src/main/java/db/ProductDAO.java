@@ -72,4 +72,50 @@ public class ProductDAO extends bo.Product{
     public static boolean remove(String name){
         return true;
     }
+
+    public static boolean addProduct(String name, String descr, String category, float price, int stock) throws SQLException {
+        String sql = "INSERT INTO PRODUCTS (NAME, DESCR, CATEGORY, PRICE, STOCK) VALUES (?, ?, ?, ?, ?)";
+
+        try (Connection connection = DBManager.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            stmt.setString(1, name);
+            stmt.setString(2, descr);
+            stmt.setString(3, category);
+            stmt.setFloat(4, price);
+            stmt.setInt(5, stock);
+
+            return stmt.executeUpdate() > 0;
+        }
+    }
+
+    public static boolean updateProduct(int id, String name, String descr, String category, float price, int stock) throws SQLException {
+        String sql = "UPDATE PRODUCTS SET NAME = ?, DESCR = ?, CATEGORY = ?, PRICE = ?, STOCK = ? WHERE ID = ?";
+
+        try (Connection connection = DBManager.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            stmt.setString(1, name);
+            stmt.setString(2, descr);
+            stmt.setString(3, category);
+            stmt.setFloat(4, price);
+            stmt.setInt(5, stock);
+            stmt.setInt(6, id);
+
+            return stmt.executeUpdate() > 0;
+        }
+    }
+
+    public static boolean removeProduct(int id) throws SQLException {
+        String sql = "DELETE FROM PRODUCTS WHERE ID = ?";
+
+        try (Connection connection = DBManager.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            stmt.setInt(1, id);
+            return stmt.executeUpdate() > 0;
+        }
+    }
+
+
 }

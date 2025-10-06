@@ -4,10 +4,12 @@ public class OrderDTO {
     private int orderId;
     private UserDTO user;
     private ShoppingCart order;
+    private String status;
 
-    public OrderDTO(int orderId, UserDTO user, ShoppingCart order) {
+    public OrderDTO(int orderId, UserDTO user, String status, ShoppingCart order) {
         this.orderId = orderId;
         this.user = user;
+        this.status = status;
         this.order = order;
     }
 
@@ -34,4 +36,6 @@ public class OrderDTO {
     public void setOrder(ShoppingCart order) {
         this.order = order;
     }
+
+    public String getStatus() { return status; }
 }

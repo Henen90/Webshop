@@ -4,7 +4,6 @@ import db.OrderDAO;
 import db.ProductDAO;
 import db.UserDAO;
 
-import javax.imageio.IIOException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -84,4 +83,35 @@ public class BOFacade {
         return UserDAO.changeUserRole(userId, newRole);
     }
 
+    public static boolean addProduct(String name, String descr, String category, float price, int stock) throws SQLException {
+        return ProductDAO.addProduct(name, descr, category, price, stock);
+    }
+
+    public static boolean updateProduct(int id, String name, String descr, String category, float price, int stock) throws SQLException {
+        return ProductDAO.updateProduct(id, name, descr, category, price, stock);
+    }
+
+    public static boolean removeProduct(int id) throws SQLException {
+        return ProductDAO.removeProduct(id);
+    }
+
+    public static boolean updateOrderStatus(int orderId, String newStatus) throws SQLException {
+        return OrderDAO.updateOrderStatus(orderId, newStatus);
+    }
+
+    public static List<OrderDTO> getAllOrders() throws SQLException {
+        List<Order> orders = OrderDAO.getAllOrders();
+        List<OrderDTO> orderDTOS = new ArrayList<>();
+
+        for (Order order : orders) {
+            UserDTO userDTO = getUser(order.getUser());
+            orderDTOS.add(new OrderDTO(
+                    order.getOrderId(),
+                    userDTO,
+                    order.getStatus().name(),
+                    order.getProducts()
+            ));
+        }
+        return orderDTOS;
+    }
 }

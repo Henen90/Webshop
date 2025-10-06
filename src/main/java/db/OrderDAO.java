@@ -1,5 +1,6 @@
 package db;
 
+import bo.Order;
 import bo.OrderStatus;
 import bo.ShoppingCart;
 import bo.UserDTO;
@@ -9,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OrderDAO extends bo.Order {
 
@@ -64,6 +67,45 @@ public class OrderDAO extends bo.Order {
         } catch(Exception e){
             e.printStackTrace();
             return false;
+        }
+    }
+
+    public static List<Order> getAllOrders() throws SQLException {
+        List<Order> orders = new ArrayList<>();
+        String sql = "SELECT ID, USERNAME, STATUS FROM ORDERS";
+
+        try (Connection connection = DBManager.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+
+                int orderId = rs.getInt("ID");
+                String username = rs.getString("USERNAME");
+                String statusStr = rs.getString("STATUS");
+
+                OrderStatus status = OrderStatus.valueOf(statusStr);
+
+                Order order = new OrderDAO(
+                        orderId,
+                        username,
+                        null,
+                        status
+                );
+
+                orders.add(order);
+            }
+        }
+        return orders;
+    }
+
+    public static boolean updateOrderStatus(int orderId, String newStatus) throws SQLException {
+        String sql = "UPDATE ORDERS SET STATUS = ? WHERE ID = ?";
+        try (Connection connection = DBManager.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, newStatus);
+            stmt.setInt(2, orderId);
+            return stmt.executeUpdate() > 0;
         }
     }
 }
