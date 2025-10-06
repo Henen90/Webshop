@@ -15,7 +15,7 @@ public class BOFacade {
     public static UserDTO validateUser(String username, String password) throws SQLException {
         User user = UserDAO.findByUsernameAndPassword(username, password);
         if(user != null){
-            return new UserDTO(user.getUserName(), user.geteMail());
+            return new UserDTO(user.getUserName(), user.geteMail(), user.getRole());
         }
         return null;
     }
@@ -23,9 +23,23 @@ public class BOFacade {
     public static UserDTO getUser(String username) throws SQLException {
         User user = UserDAO.findByUsername(username);
         if(user != null){
-            return new UserDTO(user.getUserName(), user.geteMail());
+            return new UserDTO(user.getUserName(), user.geteMail(), user.getRole());
         }
         return null;
+    }
+
+    public static List<UserDTO> getAllUsers() throws SQLException {
+        List<User> users = UserDAO.getAllUsers();
+        List<UserDTO> userDTOS = new ArrayList<>();
+
+        for (User user : users) {
+            userDTOS.add(new UserDTO(
+                    user.getUserName(),
+                    user.geteMail(),
+                    user.getRole()
+            ));
+        }
+        return userDTOS;
     }
 
     public static List<ProductDTO> getAllProducts() throws SQLException {
@@ -38,8 +52,8 @@ public class BOFacade {
         return productDTOS;
     }
 
-    public static boolean registerUser(String firstName, String lastName, String userName, String passWord, String eMail) throws SQLException {
-        return UserDAO.registerUser(firstName,lastName,userName,passWord,eMail);
+    public static boolean registerUser(String firstName, String lastName, String userName, String passWord, String eMail, String role) throws SQLException {
+        return UserDAO.registerUser(firstName,lastName,userName,passWord,eMail, role);
     }
 
     public static List<ProductDTO> getProductsByName(){
@@ -59,6 +73,14 @@ public class BOFacade {
     public static boolean putOrder(String user, ShoppingCart shoppingCart, OrderStatus status) throws SQLException, IOException {
 
         return OrderDAO.createOrder(user, shoppingCart, status);
+    }
+
+    public static boolean deleteUser(int userId) throws SQLException {
+        return UserDAO.deleteUser(userId);
+    }
+
+    public static boolean changeUserRole(int userId, String newRole) throws SQLException {
+        return UserDAO.changeUserRole(userId, newRole);
     }
 
 }

@@ -7,15 +7,17 @@ public class User {
     private String userName;
     private String passWord;
     private String eMail;
+    private Role role;
 
 
-    protected User(int id, String firstName, String lastName, String userName, String passWord, String eMail) {
+    protected User(int id, String firstName, String lastName, String userName, String passWord, String eMail, Role role) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
         this.passWord = passWord;
         this.eMail = eMail;
+        this.role = role;
     }
 
     public int getId() {
@@ -64,6 +66,14 @@ public class User {
 
     public void setPassWord(String passWord) {
         this.passWord = passWord;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     @Override
