@@ -40,6 +40,28 @@ public class UserDAO extends bo.User{
         return null;
     }
 
+    public static UserDAO findByUsername(String userName) throws SQLException {
+        String sql = "SELECT * FROM USERS WHERE username=?;";
+        try(Connection connection = DBManager.getConnection();
+            PreparedStatement stmt = connection.prepareStatement(sql)){
+
+            stmt.setString(1, userName);
+            ResultSet rs = stmt.executeQuery();
+            System.out.println("result is: "+rs.toString());
+            if(rs.next()){
+                return new UserDAO(
+                        rs.getInt("ID"),
+                        rs.getString("FIRSTNAME"),
+                        rs.getString("LASTNAME"),
+                        rs.getString("USERNAME"),
+                        rs.getString("PASSWORD"),
+                        rs.getString("EMAIL")
+                );
+            }
+        }
+        return null;
+    }
+
     public static boolean registerUser(String firstName, String lastName, String userName, String passWord, String eMail) throws SQLException{
         String sql = "INSERT INTO USERS (FIRSTNAME, LASTNAME, USERNAME, PASSWORD, EMAIL) VALUES (?, ?, ?, ?, ?)";
         //List<User> users = findAllUsers();

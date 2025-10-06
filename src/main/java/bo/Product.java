@@ -7,13 +7,15 @@ public class Product {
     private int id;
     private String category;
     private float price;
+    private int stock;
 
-    protected Product(int id, String name, String descr, String category, float price){
+    protected Product(int id, String name, String descr, String category, float price, int stock){
         this.id = id;
         this.name = name;
         this.descr = descr;
         this.category = category;
         this.price=price;
+        this.stock = stock;
     }
 
     public String getName() {
@@ -26,6 +28,14 @@ public class Product {
 
     public String getDescr() {
         return descr;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
     public void setDescr(String descr) {

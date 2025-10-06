@@ -4,7 +4,6 @@
 <html>
 <head>
     <title>Kundvagn</title>
-    <%-- Din CSS här --%>
 </head>
 <body>
 <%@ include file="header.jsp" %>
@@ -16,27 +15,28 @@
         <th>Pris</th>
     </tr>
 
-    <%-- Sätt en variabel för totalsumman --%>
     <c:set var="totalSum" value="0" />
 
-    <%-- Loopa igenom produkterna i kundvagnen från sessionen --%>
     <c:forEach items="${sessionScope.shoppingcart.products}" var="item">
         <tr>
             <td>${item.name}</td>
             <td>${item.price} kr</td>
         </tr>
-        <%-- Addera produktens pris till totalsumman --%>
         <c:set var="totalSum" value="${totalSum + item.price}" />
     </c:forEach>
 
-    <%-- Visa totalsumman --%>
     <tr>
         <td><b>Summa</b></td>
         <td><b>${totalSum} kr</b></td>
     </tr>
 </table>
 
-<%-- ... knappar etc. ... --%>
+<div class="order-button-container" style="text-align:center; margin-top: 20px;">
+    <form action="checkout.jsp">
+        <button type="submit" class="order-button">Slutför köp</button>
+    </form>
+</div>
+
 <%@ include file="footer.jsp" %>
 </body>
 </html>

@@ -7,9 +7,13 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
         main {
             padding: 20px;
+            flex-grow: 1;
         }
         .product {
             border: 1px solid #ddd;
@@ -31,6 +35,7 @@
         .product button:hover {
             background-color: #218838;
         }
+
     </style>
 </head>
 <body>
@@ -41,8 +46,6 @@
     <h2>Produkter</h2>
 
     <jsp:include page="products.jsp"/>
-
-
 
 </main>
 <%@ include file="footer.jsp" %>

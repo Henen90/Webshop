@@ -12,8 +12,8 @@ import java.util.List;
 
 public class ProductDAO extends bo.Product{
 
-    protected ProductDAO(int id, String name, String descr, String category, float price) {
-        super(id, name, descr, category, price);
+    protected ProductDAO(int id, String name, String descr, String category, float price, int stock) {
+        super(id, name, descr, category, price, stock);
     }
 
     public static List<Product> searchProducts(String criteria){
@@ -22,7 +22,7 @@ public class ProductDAO extends bo.Product{
 
     public static List<Product> getAllProducts() throws SQLException {
         List<Product> products = new ArrayList<>();
-        String sql = "SELECT id, name, descr, category, price FROM products";
+        String sql = "SELECT id, name, descr, category, price, stock FROM products";
 
         try (Connection connection = DBManager.getConnection()) {
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -34,8 +34,9 @@ public class ProductDAO extends bo.Product{
                 String descr = rs.getString("descr");
                 String category = rs.getString("category");
                 float price = rs.getFloat("price");
+                int stock = rs.getInt(("stock"));
 
-                ProductDAO product = new ProductDAO(id, name, descr, category, price);
+                ProductDAO product = new ProductDAO(id, name, descr, category, price, stock);
                 products.add(product);
             }
         }
@@ -57,7 +58,8 @@ public class ProductDAO extends bo.Product{
                 String descr = rs.getString("descr");
                 String category = rs.getString("category");
                 float price = rs.getFloat("price");
-                product = new ProductDAO(id, name, descr, category, price);
+                int stock = rs.getInt("stock");
+                product = new ProductDAO(id, name, descr, category, price, stock);
             }
         }
         return product;

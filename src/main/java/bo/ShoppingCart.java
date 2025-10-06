@@ -26,4 +26,9 @@ public class ShoppingCart {
         System.out.print("Index out of bounds");
         return false;
     }
+
+    @Override
+    public String toString() {
+        return products.toString();
+    }
 }
