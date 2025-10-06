@@ -72,7 +72,7 @@ public class OrderDAO extends bo.Order {
 
     public static List<Order> getAllOrders() throws SQLException {
         List<Order> orders = new ArrayList<>();
-        String sql = "SELECT ID, USERNAME, STATUS FROM ORDERS";
+        String sql = "SELECT ORDER_ID, USERNAME, STATUS FROM ORDERS";
 
         try (Connection connection = DBManager.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql);
@@ -80,7 +80,7 @@ public class OrderDAO extends bo.Order {
 
             while (rs.next()) {
 
-                int orderId = rs.getInt("ID");
+                int orderId = rs.getInt("ORDER_ID");
                 String username = rs.getString("USERNAME");
                 String statusStr = rs.getString("STATUS");
 
@@ -100,7 +100,7 @@ public class OrderDAO extends bo.Order {
     }
 
     public static boolean updateOrderStatus(int orderId, String newStatus) throws SQLException {
-        String sql = "UPDATE ORDERS SET STATUS = ? WHERE ID = ?";
+        String sql = "UPDATE ORDERS SET STATUS = ? WHERE ORDER_ID = ?";
         try (Connection connection = DBManager.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, newStatus);
