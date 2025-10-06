@@ -28,7 +28,11 @@ public class ShoppingCartServlet extends HttpServlet {
             ProductDTO product = BOFacade.getProductById(id);
 
             if (product != null) {
-                shoppingCart.addToCart(product);
+                if(product.getStock()>0) {
+                    shoppingCart.addToCart(product);
+                }else{
+                    request.setAttribute("error","Produkten finns tyvärr inte i lager.");
+                }
             }
         }
         catch (Exception e) {

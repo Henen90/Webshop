@@ -16,7 +16,12 @@ public class CheckoutServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         HttpSession session = request.getSession();
         UserDTO user = (UserDTO) session.getAttribute("user");
-        ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
+        ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingcart");
+
+        if(user==null){
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
+            return;
+        }
 
         try{
             boolean orderSuccess = BOFacade.putOrder(user.getUsername(), shoppingCart, OrderStatus.PACKING);
@@ -30,6 +35,7 @@ public class CheckoutServlet extends HttpServlet {
             }
             request.getRequestDispatcher("checkout.jsp").forward(request, response);
         } catch (Exception e){
+
             e.printStackTrace();
             request.setAttribute("error", "Ett fel inträffade");
             request.getRequestDispatcher("shoppingcart.jsp").forward(request,response);
