@@ -30,15 +30,18 @@ public class ShoppingCartServlet extends HttpServlet {
             if (product != null) {
                 if(product.getStock()>0) {
                     shoppingCart.addToCart(product);
+                    request.setAttribute("success", "Produkten '" + product.getName() + "' har lagts till i kundvagnen!");
                 }else{
                     request.setAttribute("error","Produkten finns tyvärr inte i lager.");
                 }
             }
+            response.sendRedirect(request.getContextPath());
+
         }
         catch (Exception e) {
             e.printStackTrace();
         }
-        response.sendRedirect("shoppingcart.jsp");
+        //response.sendRedirect("shoppingcart.jsp");
     }
 
 }
