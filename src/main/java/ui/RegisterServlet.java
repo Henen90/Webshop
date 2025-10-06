@@ -18,9 +18,10 @@ public class RegisterServlet extends HttpServlet {
         String userName = request.getParameter("username");
         String passWord = request.getParameter("password");
         String eMail = request.getParameter("email");
+        String role = "CUSTOMER";
 
         try{
-            boolean regSuccess = BOFacade.registerUser(firstName,lastName,userName,passWord,eMail);
+            boolean regSuccess = BOFacade.registerUser(firstName,lastName,userName,passWord,eMail,role);
 
             if(regSuccess){
                 response.sendRedirect("login.jsp?registered=true");
